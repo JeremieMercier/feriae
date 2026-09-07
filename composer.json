@@ -1,0 +1,23 @@
+{
+    "require": {
+        "php": ">=8.2",
+        "azuyalabs/yasumi": "^2.11"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "platform": {
+            "php": "8.2.99"
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "GlpiPlugin\\Feriae\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "GlpiPlugin\\Feriae\\Tests\\": "tests/"
+        }
+    }
+}

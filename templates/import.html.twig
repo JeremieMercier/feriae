@@ -1,0 +1,154 @@
+{#
+ # -------------------------------------------------------------------------
+ # Feriae plugin for GLPI
+ # -------------------------------------------------------------------------
+ #
+ # MIT License
+ #
+ # Permission is hereby granted, free of charge, to any person obtaining a copy
+ # of this software and associated documentation files (the "Software"), to deal
+ # in the Software without restriction, including without limitation the rights
+ # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ # copies of the Software, and to permit persons to whom the Software is
+ # furnished to do so, subject to the following conditions:
+ #
+ # The above copyright notice and this permission notice shall be included in all
+ # copies or substantial portions of the Software.
+ #
+ # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ # SOFTWARE.
+ # -------------------------------------------------------------------------
+ # @copyright Copyright (C) 2026 by the Feriae plugin team.
+ # @license   MIT https://opensource.org/licenses/mit-license.php
+ # @link      https://github.com/JeremieMercier/feriae
+ # -------------------------------------------------------------------------
+ #}
+
+{% import 'components/form/fields_macros.html.twig' as fields %}
+
+<form method="post" action="{{ form_action }}" data-submit-once
+      data-feriae-preview-url="{{ preview_action }}"
+      data-feriae-preview-messages="{{ {
+          'nothing': __('No holiday found for this region and year.', 'feriae'),
+          'selected': __('%1$d days of the selected types out of %2$d found.', 'feriae'),
+          'none': __('None of the selected types has any day for this region: tick the types with a count.', 'feriae'),
+      }|json_encode }}">
+    <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">
+                <i class="ti ti-calendar-down me-2"></i>
+                {{ __('Import public holidays as close times', 'feriae') }}
+            </h3>
+        </div>
+        <div class="card-body">
+            <div class="hr-text mt-0">
+                <i class="ti ti-world"></i>
+                <span>{{ __('Source and period', 'feriae') }}</span>
+            </div>
+            <p class="text-muted fst-italic">
+                {{ __('Each holiday becomes a close time (Setup > Dropdowns > Close times) that you can attach to calendars. Importing the same region and years again refreshes what was imported instead of duplicating it.', 'feriae') }}
+            </p>
+            <div class="row">
+                {% if sources|length > 1 %}
+                    {{ fields.dropdownArrayField('source', config['source'], sources, __('Data source', 'feriae')) }}
+                {% else %}
+                    <input type="hidden" name="source" value="{{ source.getKey() }}" />
+                {% endif %}
+
+                {{ fields.dropdownArrayField(
+                    'region_code',
+                    config['region_code'],
+                    regions,
+                    __('Country or region', 'feriae'),
+                    {
+                        'display_emptychoice': true,
+                        'helper': __('Regions listed under a country add their own holidays to the national ones.', 'feriae'),
+                        'width': '100%',
+                    }
+                ) }}
+
+                {{ fields.numberField('year_from', current_year, __('First year', 'feriae'), {'min': min_year, 'max': max_year}) }}
+                {{ fields.numberField('years_count', config['years_count'], __('Number of years', 'feriae'), {'min': 1, 'max': 10}) }}
+
+                {% set types_field %}
+                    <div id="feriae-types">
+                        {% for value, label in types %}
+                            <label class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" name="types[]" value="{{ value }}"
+                                       {{ value in selected_types ? 'checked' : '' }} />
+                                <span class="form-check-label">
+                                    {{ label }}
+                                    <span class="badge bg-secondary-lt ms-1" data-feriae-count="{{ value }}" hidden></span>
+                                </span>
+                            </label>
+                        {% endfor %}
+                        <div class="form-text" id="feriae-preview" hidden></div>
+                    </div>
+                {% endset %}
+                {{ fields.field('types', types_field, __('Types of days', 'feriae'), {
+                    'full_width': true,
+                    'helper': __('Sources do not type holidays the same way in every country: the counts next to each type show what the selected region and year contain.', 'feriae')
+                }) }}
+            </div>
+
+            <div class="hr-text">
+                <i class="ti ti-building"></i>
+                <span>{{ __('Destination', 'feriae') }}</span>
+            </div>
+            <div class="row">
+                {{ fields.dropdownField('Entity', 'entities_id', session('glpiactive_entity'), 'Entity'|itemtype_name, {
+                    'entity': session('glpiactiveentities'),
+                }) }}
+                {{ fields.sliderField('is_recursive', config['is_recursive'], __('Child entities')) }}
+
+                {{ fields.dropdownArrayField(
+                    'calendars_id',
+                    '',
+                    calendars,
+                    'Calendar'|itemtype_name(2),
+                    {
+                        'multiple': true,
+                        'values': selected_calendars,
+                        'helper': __('Calendars the close times are attached to. Leave empty to attach them by hand later.', 'feriae'),
+                    }
+                ) }}
+            </div>
+
+            <div class="hr-text">
+                <i class="ti ti-adjustments"></i>
+                <span>{{ __('Options', 'feriae') }}</span>
+            </div>
+            <div class="row">
+                {{ fields.sliderField('fixed_as_recurrent', config['fixed_as_recurrent'], __('Fixed dates as recurrent periods', 'feriae'), {
+                    'helper': __('Holidays falling on the same date every year (New Year\'s Day, Christmas...) become a single recurrent close time, shared by the imported years, instead of one period per year. Moving holidays (Easter Monday, Ascension...) are always one period per year.', 'feriae')
+                }) }}
+
+                {{ fields.sliderField('skip_existing', config['skip_existing'], __('Skip dates already covered', 'feriae'), {
+                    'helper': __('A close time of the entity already covering the date, entered by hand or by another import, is reused and attached to the calendars instead of being duplicated.', 'feriae')
+                }) }}
+
+                {{ fields.sliderField('replace', 0, __('Replace previous imports', 'feriae'), {
+                    'helper': __('First remove what a previous import of the same region and years created, including periods you deleted by hand.', 'feriae')
+                }) }}
+
+                {{ fields.sliderField('automatic', 0, __('Renew every year', 'feriae'), {
+                    'helper': __('Also keep these settings as an automatic import: every day, the automatic action imports the same number of years counted from the current year, so the coming years are always covered. Automatic imports are listed in the Imports tab.', 'feriae')
+                }) }}
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">
+                <i class="ti ti-download me-1"></i>
+                {{ __('Import holidays', 'feriae') }}
+            </button>
+        </div>
+    </div>
+</form>
+
+<script src="{{ js_path('/plugins/feriae/js/config.js') }}"></script>

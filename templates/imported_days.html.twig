@@ -1,0 +1,69 @@
+{#
+ # -------------------------------------------------------------------------
+ # Feriae plugin for GLPI
+ # -------------------------------------------------------------------------
+ #
+ # MIT License
+ #
+ # Permission is hereby granted, free of charge, to any person obtaining a copy
+ # of this software and associated documentation files (the "Software"), to deal
+ # in the Software without restriction, including without limitation the rights
+ # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ # copies of the Software, and to permit persons to whom the Software is
+ # furnished to do so, subject to the following conditions:
+ #
+ # The above copyright notice and this permission notice shall be included in all
+ # copies or substantial portions of the Software.
+ #
+ # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ # SOFTWARE.
+ # -------------------------------------------------------------------------
+ # @copyright Copyright (C) 2026 by the Feriae plugin team.
+ # @license   MIT https://opensource.org/licenses/mit-license.php
+ # @link      https://github.com/JeremieMercier/feriae
+ # -------------------------------------------------------------------------
+ #}
+
+
+{% if days is empty %}
+    <p class="text-muted mb-0">{{ __('No day left from this import.', 'feriae') }}</p>
+{% else %}
+    <table class="table table-sm table-hover mb-0">
+        <thead>
+            <tr>
+                <th>{{ __('Date') }}</th>
+                <th>{{ __('Name') }}</th>
+                <th>{{ 'Entity'|itemtype_name }}</th>
+                <th>{{ 'Calendar'|itemtype_name(2) }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for day in days %}
+                <tr>
+                    <td class="text-nowrap">{{ day.holiday_date|formatted_date }}</td>
+                    <td>
+                        {% if day.name is not null %}
+                            {{ get_item_link('Holiday', day.holidays_id) }}
+                            {% if day.is_perpetual %}
+                                <span class="badge bg-blue-lt ms-1">{{ __('Recurrent') }}</span>
+                            {% endif %}
+                            {% if day.is_moved %}
+                                <span class="badge bg-secondary-lt ms-1" title="{{ __('Transferred to another entity since the import: left alone, like a close time entered by hand', 'feriae') }}">{{ __('Moved', 'feriae') }}</span>
+                            {% endif %}
+                        {% else %}
+                            <span class="text-muted">{{ day.holiday_key }}</span>
+                            <span class="badge bg-secondary-lt ms-1">{{ __('Deleted by hand', 'feriae') }}</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ day.entities_id is not null ? get_item_name('Entity', day.entities_id) : '' }}</td>
+                    <td>{{ day.name is not null ? day.calendars : '' }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}

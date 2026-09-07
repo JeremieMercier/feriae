@@ -1,0 +1,9 @@
+dist/
+node_modules/
+vendor/
+.gh_token
+*.min.*
+var
+/.vscode/
+/.idea/
+/eslint.config.local.mjs

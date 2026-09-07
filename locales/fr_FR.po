@@ -1,0 +1,1207 @@
+# Feriae plugin for GLPI — French translation.
+# Copyright (C) 2026 by the Feriae plugin team.
+msgid ""
+msgstr ""
+"Project-Id-Version: Feriae 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-05 14:08+0200\n"
+"PO-Revision-Date: 2026-09-05 13:30+0200\n"
+"Last-Translator: Jérémie Mercier\n"
+"Language-Team: French\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % "
+"1000000 == 0 ? 1 : 2;\n"
+
+#: templates/import.html.twig
+msgid "Import public holidays as close times"
+msgstr "Importer les jours fériés en périodes de fermeture"
+
+#: templates/import.html.twig
+msgid ""
+"Each holiday becomes a close time (Setup > Dropdowns > Close times) that you "
+"can attach to calendars. Importing the same region and years again refreshes "
+"what was imported instead of duplicating it."
+msgstr ""
+"Chaque jour férié devient une période de fermeture (Configuration > "
+"Intitulés > Périodes de fermeture) que vous pouvez rattacher à des "
+"calendriers. Réimporter la même région et les mêmes années met à jour ce qui "
+"a été importé au lieu de le dupliquer."
+
+#: templates/import.html.twig
+msgid "Data source"
+msgstr "Source de données"
+
+#: templates/import.html.twig
+msgid "Country or region"
+msgstr "Pays ou région"
+
+#: templates/import.html.twig
+msgid ""
+"Regions listed under a country add their own holidays to the national ones."
+msgstr ""
+"Les régions listées sous un pays ajoutent leurs propres jours fériés aux "
+"jours nationaux."
+
+#: templates/import.html.twig
+msgid "First year"
+msgstr "Première année"
+
+#: templates/import.html.twig
+msgid "Number of years"
+msgstr "Nombre d'années"
+
+#: templates/import.html.twig
+msgid "Types of days"
+msgstr "Types de jours"
+
+#: templates/import.html.twig
+msgid ""
+"Calendars the close times are attached to. Leave empty to attach them by "
+"hand later."
+msgstr ""
+"Calendriers auxquels rattacher les périodes de fermeture. Laissez vide pour "
+"les rattacher à la main plus tard."
+
+#: templates/import.html.twig
+msgid "Skip dates already covered"
+msgstr "Ignorer les dates déjà couvertes"
+
+#: templates/import.html.twig
+msgid ""
+"A close time of the entity already covering the date, entered by hand or by "
+"another import, is reused and attached to the calendars instead of being "
+"duplicated."
+msgstr ""
+"Une période de fermeture de l'entité couvrant déjà la date, saisie à la main "
+"ou issue d'un autre import, est réutilisée et rattachée aux calendriers au "
+"lieu d'être dupliquée."
+
+#: templates/import.html.twig
+msgid "Replace previous imports"
+msgstr "Remplacer les imports précédents"
+
+#: templates/import.html.twig
+msgid ""
+"First remove what a previous import of the same region and years created, "
+"including periods you deleted by hand."
+msgstr ""
+"Supprime d'abord ce qu'un import précédent de la même région et des mêmes "
+"années a créé, y compris les périodes que vous aviez supprimées à la main."
+
+#: templates/import.html.twig
+msgid "Import holidays"
+msgstr "Importer les jours fériés"
+
+#: templates/import.html.twig
+msgid "Previous imports"
+msgstr "Imports précédents"
+
+#: templates/import.html.twig
+msgid "No close times imported yet."
+msgstr "Aucune période de fermeture importée pour le moment."
+
+#: templates/import.html.twig
+msgid "Year"
+msgstr "Année"
+
+#: templates/import.html.twig
+msgid "Close times"
+msgstr "Périodes de fermeture"
+
+#: templates/import.html.twig
+msgid "Some periods were deleted by hand since the import."
+msgstr "Certaines périodes ont été supprimées à la main depuis l'import."
+
+#: templates/import.html.twig
+msgid "Remove these close times and their calendar links?"
+msgstr "Supprimer ces périodes de fermeture et leurs liens aux calendriers ?"
+
+#: templates/import.html.twig
+msgid "Remove"
+msgstr "Supprimer"
+
+#: src/ClosedDayWarning.php:95
+#, php-format
+msgid "Warning: this event is planned on a close time of the entity %s."
+msgstr ""
+"Attention : cet événement est planifié sur une période de fermeture de "
+"l'entité %s."
+
+#: src/ClosedDayWarning.php:96
+#, php-format
+msgid "Warning: this task is planned on a close time of the entity %s."
+msgstr ""
+"Attention : cette tâche est planifiée sur une période de fermeture de "
+"l'entité %s."
+
+#: src/PluginConfig.php:145
+msgid "New import"
+msgstr "Nouvel import"
+
+#: src/PluginConfig.php
+msgid "Imports"
+msgstr "Imports"
+
+#: src/Source/HolidayType.php:58
+msgid "Public holiday"
+msgstr "Jour férié"
+
+#: src/Source/HolidayType.php:59
+msgid "Observance"
+msgstr "Journée commémorative"
+
+#: src/Source/HolidayType.php:60
+msgid "Bank holiday"
+msgstr "Jour de fermeture bancaire"
+
+#: src/Source/HolidayType.php:61
+msgid "Seasonal event"
+msgstr "Événement saisonnier"
+
+#: src/Source/HolidayType.php:62
+msgid "Other"
+msgstr "Autre"
+
+#: src/Controller/ImportController.php:76
+#, php-format
+msgid "Close times of %1$s imported: %2$s."
+msgstr "Périodes de fermeture de %1$s importées : %2$s."
+
+#: src/Controller/ImportController.php:94
+msgid "Nothing to remove."
+msgstr "Rien à supprimer."
+
+#: src/Controller/ImportController.php:101
+#, php-format
+msgid "%1$d close times of %2$s %3$d removed."
+msgstr "%1$d périodes de fermeture de %2$s %3$d supprimées."
+
+#: src/Controller/ImportController.php:120
+msgid "Please select a country or a region."
+msgstr "Veuillez sélectionner un pays ou une région."
+
+#: src/Controller/ImportController.php:554
+#, php-format
+msgid "The year must be between %1$d and %2$d."
+msgstr "L'année doit être comprise entre %1$d et %2$d."
+
+#: src/Controller/ImportController.php
+#, php-format
+msgid "%s is no longer offered by the source: the import cannot be renewed. Its close times are kept."
+msgstr "%s n'est plus proposé par la source : l'import ne peut pas être renouvelé. Ses périodes de fermeture sont conservées."
+
+#: src/Controller/ImportController.php
+#, php-format
+msgid "The source %s is no longer available: the import cannot be renewed. Its close times are kept."
+msgstr "La source %s n'est plus disponible : l'import ne peut pas être renouvelé. Ses périodes de fermeture sont conservées."
+
+#: src/ImportedHoliday.php:54
+msgid "Imported close time"
+msgid_plural "Imported close times"
+msgstr[0] "Période de fermeture importée"
+msgstr[1] "Périodes de fermeture importées"
+msgstr[2] "Périodes de fermeture importées"
+
+#: src/PlanningClosedDay.php:55
+msgid "Close time"
+msgid_plural "Close times"
+msgstr[0] "Période de fermeture"
+msgstr[1] "Périodes de fermeture"
+msgstr[2] "Périodes de fermeture"
+
+#: src/Import/ImportReport.php:64
+#, php-format
+msgid "%d created"
+msgstr "%d créé(s)"
+
+#: src/Import/ImportReport.php:65
+#, php-format
+msgid "%d updated"
+msgstr "%d mis à jour"
+
+#: src/Import/ImportReport.php:66
+#, php-format
+msgid "%d unchanged"
+msgstr "%d inchangé(s)"
+
+#: src/Import/ImportReport.php:69
+#, php-format
+msgid "%d skipped (deleted by hand)"
+msgstr "%d ignoré(s) (supprimé(s) à la main)"
+
+#: src/Import/ImportReport.php:72
+#, php-format
+msgid "%d removed"
+msgstr "%d supprimé(s)"
+
+#: src/Import/ImportReport.php:75
+#, php-format
+msgid "%d already covered by an existing close time"
+msgstr "%d déjà couvert(s) par une période de fermeture existante"
+
+#: src/Import/ImportReport.php:78
+#, php-format
+msgid "%d calendar links"
+msgstr "%d liens aux calendriers"
+
+#: src/Import/HolidayImporter.php:207
+#, php-format
+msgid "Imported by Feriae from %1$s (%2$s, %3$d)"
+msgstr "Importé par Feriae depuis %1$s (%2$s, %3$d)"
+
+#: setup.php
+msgid ""
+"The Yasumi library is missing: install the plugin from its release archive, "
+"or run \"composer install --no-dev\" in the plugin directory."
+msgstr ""
+"La bibliothèque Yasumi est absente : installez le plugin depuis son archive "
+"de release, ou lancez « composer install --no-dev » dans le dossier du "
+"plugin."
+
+#: src/AutomaticImport.php
+msgid "Automatic import"
+msgid_plural "Automatic imports"
+msgstr[0] "Import automatique"
+msgstr[1] "Imports automatiques"
+msgstr[2] "Imports automatiques"
+
+#: src/AutomaticImport.php
+msgid "Import the coming years of the automatic holiday imports"
+msgstr "Importer les années à venir des imports automatiques de jours fériés"
+
+#: src/Controller/ImportController.php
+#, php-format
+msgid ""
+"Automatic import of %s removed. The close times already imported are kept."
+msgstr ""
+"Import automatique de %s retiré. Les périodes de fermeture déjà importées "
+"sont conservées."
+
+#: templates/import.html.twig
+msgid "Renew every year"
+msgstr "Renouveler chaque année"
+
+#: templates/import.html.twig
+msgid ""
+"Also keep these settings as an automatic import: every day, the automatic "
+"action imports the same number of years counted from the current year, so "
+"the coming years are always covered. Automatic imports are listed in the "
+"Imports tab."
+msgstr ""
+"Conserver aussi ces réglages comme import automatique : chaque jour, "
+"l'action automatique importe le même nombre d'années à partir de l'année en "
+"cours, pour que les années à venir soient toujours couvertes. Les imports "
+"automatiques sont listés dans l'onglet Imports."
+
+#: templates/import.html.twig
+msgid "Automatic imports"
+msgstr "Imports automatiques"
+
+#: templates/import.html.twig
+msgid ""
+"No automatic import. Enable \"Renew every year\" on an import to keep it up "
+"to date."
+msgstr ""
+"Aucun import automatique. Activez « Renouveler chaque année » sur un import "
+"pour le garder à jour."
+
+#: templates/import.html.twig
+msgid "Last run"
+msgstr "Dernière exécution"
+
+#: templates/import.html.twig
+msgid "Never"
+msgstr "Jamais"
+
+#: templates/import.html.twig
+msgid ""
+"The automatic action runs in CLI mode, but no automatic action in CLI mode "
+"has run during the last day. Make sure the system cron of GLPI is set up."
+msgstr ""
+"L'action automatique est en mode CLI, mais aucune action automatique en mode "
+"CLI ne s'est exécutée depuis un jour. Vérifiez que le cron système de GLPI "
+"est en place."
+
+#: templates/import.html.twig
+msgid "Automatic action"
+msgstr "Action automatique"
+
+#: templates/import.html.twig
+msgid "last run"
+msgstr "dernière exécution"
+
+#: templates/import.html.twig
+msgid "never run"
+msgstr "jamais exécutée"
+
+#: src/Controller/ImportController.php
+#, php-format
+msgid "No holiday found for %s."
+msgstr "Aucun jour férié trouvé pour %s."
+
+#: src/Controller/ImportController.php
+#, php-format
+msgid ""
+"No holiday of the selected types for %1$s. This region has: %2$s. Tick the "
+"matching types and import again."
+msgstr ""
+"Aucun jour férié des types sélectionnés pour %1$s. Cette région contient : "
+"%2$s. Cochez les types correspondants et relancez l'import."
+
+#: templates/import.html.twig
+msgid ""
+"Sources do not type holidays the same way in every country: the counts next "
+"to each type show what the selected region and year contain."
+msgstr ""
+"Les sources ne typent pas les jours fériés de la même façon dans tous les "
+"pays : les compteurs à côté de chaque type indiquent ce que contiennent la "
+"région et l'année choisies."
+
+#: templates/import.html.twig
+msgid "No holiday found for this region and year."
+msgstr "Aucun jour férié trouvé pour cette région et cette année."
+
+#: templates/import.html.twig
+#, php-format
+msgid "%1$d days of the selected types out of %2$d found."
+msgstr "%1$d jours des types sélectionnés sur %2$d trouvés."
+
+#: templates/import.html.twig
+msgid ""
+"None of the selected types has any day for this region: tick the types with "
+"a count."
+msgstr ""
+"Aucun des types sélectionnés n'a de jour pour cette région : cochez les "
+"types qui ont un compteur."
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Aargau"
+msgstr "Argovie"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Alberta"
+msgstr "Alberta"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Andalusia"
+msgstr "Andalousie"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Appenzell Ausserrhoden"
+msgstr "Appenzell Rhodes-Extérieures"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Appenzell Innerrhoden"
+msgstr "Appenzell Rhodes-Intérieures"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Aragon"
+msgstr "Aragon"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Asturias"
+msgstr "Asturies"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Australian Capital Territory"
+msgstr "Territoire de la capitale australienne"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Baden-Württemberg"
+msgstr "Bade-Wurtemberg"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Balearic Islands"
+msgstr "Îles Baléares"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Bas-Rhin"
+msgstr "Bas-Rhin"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Basel-Landschaft"
+msgstr "Bâle-Campagne"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Basel-Stadt"
+msgstr "Bâle-Ville"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Basque Country"
+msgstr "Pays basque"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Bavaria"
+msgstr "Bavière"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Berlin"
+msgstr "Berlin"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Bern"
+msgstr "Berne"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Brandenburg"
+msgstr "Brandebourg"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Bremen"
+msgstr "Brême"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Brisbane"
+msgstr "Brisbane"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "British Columbia"
+msgstr "Colombie-Britannique"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Burgenland"
+msgstr "Burgenland"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Canary Islands"
+msgstr "Îles Canaries"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Cantabria"
+msgstr "Cantabrie"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Carinthia"
+msgstr "Carinthie"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Castile and León"
+msgstr "Castille-et-León"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Castilla-La Mancha"
+msgstr "Castille-La Manche"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Catalonia"
+msgstr "Catalogne"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Central North"
+msgstr "Centre-Nord"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Ceuta"
+msgstr "Ceuta"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Circular Head"
+msgstr "Circular Head"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Community of Madrid"
+msgstr "Communauté de Madrid"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "England"
+msgstr "Angleterre"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Extremadura"
+msgstr "Estrémadure"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Flinders Island"
+msgstr "Île Flinders"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Fribourg"
+msgstr "Fribourg"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Galicia"
+msgstr "Galice"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Geneva"
+msgstr "Genève"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Glarus"
+msgstr "Glaris"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Grisons"
+msgstr "Grisons"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Guadeloupe"
+msgstr "Guadeloupe"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Guyane"
+msgstr "Guyane"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Hamburg"
+msgstr "Hambourg"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Haut-Rhin"
+msgstr "Haut-Rhin"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Hesse"
+msgstr "Hesse"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Jura"
+msgstr "Jura"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "King Island"
+msgstr "Île King"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "La Rioja"
+msgstr "La Rioja"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "La Réunion"
+msgstr "La Réunion"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Lower Austria"
+msgstr "Basse-Autriche"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Lower Saxony"
+msgstr "Basse-Saxe"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Lucerne"
+msgstr "Lucerne"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Manitoba"
+msgstr "Manitoba"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Martinique"
+msgstr "Martinique"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Mayotte"
+msgstr "Mayotte"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Mecklenburg-Western Pomerania"
+msgstr "Mecklembourg-Poméranie-Occidentale"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Melilla"
+msgstr "Melilla"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Moselle"
+msgstr "Moselle"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Navarre"
+msgstr "Navarre"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Neuchâtel"
+msgstr "Neuchâtel"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "New Brunswick"
+msgstr "Nouveau-Brunswick"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "New South Wales"
+msgstr "Nouvelle-Galles du Sud"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Newfoundland and Labrador"
+msgstr "Terre-Neuve-et-Labrador"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Nidwalden"
+msgstr "Nidwald"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "North Rhine-Westphalia"
+msgstr "Rhénanie-du-Nord-Westphalie"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Northeast"
+msgstr "Nord-Est"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Northern Ireland"
+msgstr "Irlande du Nord"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Northern Territory"
+msgstr "Territoire du Nord"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Northwest"
+msgstr "Nord-Ouest"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Northwest Territories"
+msgstr "Territoires du Nord-Ouest"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Nouvelle-Calédonie"
+msgstr "Nouvelle-Calédonie"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Nova Scotia"
+msgstr "Nouvelle-Écosse"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Nunavut"
+msgstr "Nunavut"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Obwalden"
+msgstr "Obwald"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Ontario"
+msgstr "Ontario"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Polynésie française"
+msgstr "Polynésie française"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Prince Edward Island"
+msgstr "Île-du-Prince-Édouard"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Quebec"
+msgstr "Québec"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Queensland"
+msgstr "Queensland"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Region of Murcia"
+msgstr "Région de Murcie"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Rhineland-Palatinate"
+msgstr "Rhénanie-Palatinat"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Saarland"
+msgstr "Sarre"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Saint-Barthélemy"
+msgstr "Saint-Barthélemy"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Saint-Martin"
+msgstr "Saint-Martin"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Saint-Pierre-et-Miquelon"
+msgstr "Saint-Pierre-et-Miquelon"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Salzburg"
+msgstr "Salzbourg"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Saskatchewan"
+msgstr "Saskatchewan"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Saxony"
+msgstr "Saxe"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Saxony-Anhalt"
+msgstr "Saxe-Anhalt"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Schaffhausen"
+msgstr "Schaffhouse"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Schleswig-Holstein"
+msgstr "Schleswig-Holstein"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Schwyz"
+msgstr "Schwytz"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Scotland"
+msgstr "Écosse"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Solothurn"
+msgstr "Soleure"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "South"
+msgstr "Sud"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "South Australia"
+msgstr "Australie-Méridionale"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Southeast"
+msgstr "Sud-Est"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "St. Gallen"
+msgstr "Saint-Gall"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Styria"
+msgstr "Styrie"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Tasmania"
+msgstr "Tasmanie"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Thurgau"
+msgstr "Thurgovie"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Thuringia"
+msgstr "Thuringe"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Ticino"
+msgstr "Tessin"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Tyrol"
+msgstr "Tyrol"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Upper Austria"
+msgstr "Haute-Autriche"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Uri"
+msgstr "Uri"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Valais"
+msgstr "Valais"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Valencian Community"
+msgstr "Communauté valencienne"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Vaud"
+msgstr "Vaud"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Victoria"
+msgstr "Victoria"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Vienna"
+msgstr "Vienne"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Vorarlberg"
+msgstr "Vorarlberg"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Wales"
+msgstr "Pays de Galles"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Wallis-et-Futuna"
+msgstr "Wallis-et-Futuna"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Western Australia"
+msgstr "Australie-Occidentale"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Yukon"
+msgstr "Yukon"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Zug"
+msgstr "Zoug"
+
+#: src/Source/Yasumi/YasumiSource.php
+msgctxt "region"
+msgid "Zurich"
+msgstr "Zurich"
+
+#: src/Controller/ImportController.php
+msgid "Nothing to show."
+msgstr "Rien à afficher."
+
+#: templates/import.html.twig
+msgid "Days"
+msgstr "Jours"
+
+#: templates/import.html.twig
+msgid "The list could not be loaded."
+msgstr "La liste n'a pas pu être chargée."
+
+#: templates/imported_days.html.twig
+msgid "No day left from this import."
+msgstr "Aucun jour de cet import n'existe plus."
+
+#: templates/imported_days.html.twig
+msgid "Deleted by hand"
+msgstr "Supprimé à la main"
+
+#: templates/imported_days.html.twig
+msgid "Moved"
+msgstr "Déplacée"
+
+#: templates/imported_days.html.twig
+msgid "Transferred to another entity since the import: left alone, like a close time entered by hand"
+msgstr "Transférée dans une autre entité depuis l'import : laissée telle quelle, comme une période de fermeture saisie à la main"
+
+#: templates/import.html.twig
+msgid "Fixed dates as recurrent periods"
+msgstr "Dates fixes en périodes récurrentes"
+
+#: templates/import.html.twig
+msgid ""
+"Holidays falling on the same date every year (New Year's Day, Christmas...) "
+"become a single recurrent close time, shared by the imported years, instead "
+"of one period per year. Moving holidays (Easter Monday, Ascension...) are "
+"always one period per year."
+msgstr ""
+"Les jours fériés qui tombent à la même date chaque année (jour de l'An, "
+"Noël…) deviennent une seule période de fermeture récurrente, partagée par "
+"les années importées, au lieu d'une période par année. Les jours fériés "
+"mobiles (lundi de Pâques, Ascension…) font toujours une période par année."
+
+#: src/Controller/ImportController.php
+msgid "No automatic import to run."
+msgstr "Aucun import automatique à exécuter."
+
+#: src/Controller/ImportController.php
+msgid ""
+"The automatic action could not be run: it is already running, or GLPI is in "
+"maintenance mode."
+msgstr ""
+"L'action automatique n'a pas pu être lancée : elle est déjà en cours, ou "
+"GLPI est en mode maintenance."
+
+#: src/Controller/ImportController.php
+msgid "Automatic imports run."
+msgstr "Imports automatiques exécutés."
+
+#: templates/import.html.twig
+msgid "Run all imports"
+msgstr "Exécuter tous les imports"
+
+#: src/Controller/ImportController.php
+#, php-format
+msgid "The automatic import of %1$s could not be run: %2$s"
+msgstr "L'import automatique de %1$s n'a pas pu être lancé : %2$s"
+
+#: src/Controller/ImportController.php
+#, php-format
+msgid "Automatic import of %1$s run: %2$s."
+msgstr "Import automatique de %1$s exécuté : %2$s."
+
+#: templates/import.html.twig
+msgid "Import the coming years of this automatic import now"
+msgstr "Importer maintenant les années à venir de cet import automatique"
+
+#: templates/import.html.twig
+msgid "Run"
+msgstr "Exécuter"
+
+#: templates/import_calendars.html.twig
+msgid "The close times of this import are not attached to any calendar."
+msgstr ""
+"Les périodes de fermeture de cet import ne sont rattachées à aucun "
+"calendrier."
+
+#: templates/import_calendars.html.twig
+msgid "Close times of this import"
+msgstr "Périodes de fermeture de cet import"
+
+#: src/Controller/ImportController.php
+#, php-format
+msgid ""
+"All imports removed: %d close times deleted. Close times entered by hand are "
+"untouched."
+msgstr ""
+"Tous les imports retirés : %d périodes de fermeture supprimées. Les périodes "
+"saisies à la main sont intactes."
+
+#: templates/import.html.twig
+msgid ""
+"Remove every close time created by the imports, with their calendar links? "
+"Close times entered by hand are kept."
+msgstr ""
+"Retirer toutes les périodes de fermeture créées par les imports, avec leurs "
+"liens aux calendriers ? Les périodes saisies à la main sont conservées."
+
+#: templates/import.html.twig
+msgid "Remove all imports"
+msgstr "Retirer tous les imports"
+
+#: templates/import.html.twig
+msgid ""
+"Uninstalling the plugin removes every close time created by the imports, the "
+"same way as \"Remove all imports\". Close times entered by hand are never "
+"touched."
+msgstr ""
+"La désinstallation du plugin retire toutes les périodes de fermeture créées "
+"par les imports, comme le bouton « Retirer tous les imports ». Les périodes "
+"saisies à la main ne sont jamais touchées."
+
+#: hook.php
+#, php-format
+msgid "Feriae: %d close times created by the imports have been removed."
+msgstr ""
+"Feriae : %d périodes de fermeture créées par les imports ont été retirées."
+
+#: src/Controller/ImportController.php
+msgid "Nothing is left of this import."
+msgstr "Il ne reste rien de cet import."
+
+#: src/Controller/ImportController.php
+#, php-format
+msgid ""
+"Automatic import of %1$s registered: %2$d years from the current one will be "
+"kept imported."
+msgstr ""
+"Import automatique de %1$s enregistré : %2$d années à partir de l'année en "
+"cours resteront importées."
+
+#: templates/import.html.twig
+msgid ""
+"Register an automatic import with the settings of this one, without "
+"importing again"
+msgstr ""
+"Enregistrer un import automatique avec les réglages de celui-ci, sans "
+"réimporter"
+
+#: templates/import.html.twig
+msgid "Renew"
+msgstr "Renouveler"
+
+#: src/Controller/ImportController.php
+#, php-format
+msgid "%1$s: %2$d years"
+msgstr "%1$s : %2$d années"
+
+#: src/Controller/ImportController.php
+msgid "Nothing is left of the previous imports."
+msgstr "Il ne reste rien des imports précédents."
+
+#: src/Controller/ImportController.php
+#, php-format
+msgid "%d automatic imports registered."
+msgstr "%d imports automatiques enregistrés."
+
+#: templates/import.html.twig
+msgid ""
+"Register an automatic import for every region and entity of the previous "
+"imports, without importing again"
+msgstr ""
+"Enregistrer un import automatique pour chaque région et entité des imports "
+"précédents, sans réimporter"
+
+#: templates/import.html.twig
+msgid "Renew all imports"
+msgstr "Renouveler tous les imports"
+
+#: templates/import.html.twig
+msgid "Source and period"
+msgstr "Source et période"
+
+#: templates/import.html.twig
+msgid "Destination"
+msgstr "Destination"
+
+#: templates/import.html.twig
+msgid "Options"
+msgstr "Options"
+
+#: templates/imports.html.twig
+msgid "For every year of this region and entity"
+msgstr "Pour toutes les années de cette région et de cette entité"
+
+#: src/Controller/ImportController.php
+#, php-format
+msgid "%1$d close times of %2$s now shown in the child entities."
+msgstr ""
+"%1$d périodes de fermeture de %2$s désormais affichées dans les sous-entités."
+
+#: src/Controller/ImportController.php
+#, php-format
+msgid "%1$d close times of %2$s now hidden from the child entities."
+msgstr ""
+"%1$d périodes de fermeture de %2$s désormais masquées aux sous-entités."
+
+#: src/Controller/ImportController.php
+#, php-format
+msgid "%d close times still visible: a calendar of a child entity uses them."
+msgstr ""
+"%d périodes de fermeture restent visibles : un calendrier d'une sous-entité "
+"les utilise."
+
+#: templates/imports.html.twig
+#, php-format
+msgid ""
+"Show the close times of %1$s in the child entities of %2$s?\n"
+"\n"
+"• Every year is concerned, including the coming ones."
+msgstr ""
+"Afficher les périodes de fermeture de %1$s dans les sous-entités de %2$s ?\n"
+"\n"
+"• Toutes les années sont concernées, y compris celles à venir."
+
+#: templates/imports.html.twig
+#, php-format
+msgid ""
+"Hide the close times of %1$s from the child entities of %2$s?\n"
+"\n"
+"• Every year is concerned, including the coming ones.\n"
+"• A period a calendar of a child entity uses stays visible."
+msgstr ""
+"Masquer les périodes de fermeture de %1$s aux sous-entités de %2$s ?\n"
+"\n"
+"• Toutes les années sont concernées, y compris celles à venir.\n"
+"• Une période utilisée par un calendrier d'une sous-entité reste visible."

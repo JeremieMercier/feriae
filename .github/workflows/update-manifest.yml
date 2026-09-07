@@ -1,0 +1,83 @@
+name: "Update plugin manifest"
+
+# Keeps feriae.xml (the plugins.glpi-project.org manifest) in sync with
+# published releases: each new release is prepended to the <versions> list
+# with its downloadable archive URL.
+
+# The release itself is created by the "Publish release" workflow with the
+# automatic GITHUB_TOKEN, and GitHub does not emit `release: published` for
+# events produced with that token: listen to the completion of that workflow
+# instead, and allow a manual run for a given tag.
+on:
+  workflow_run:
+    workflows: ["Publish release"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag to add (e.g. 0.3.0)"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  update-manifest:
+    name: "Add release to feriae.xml"
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: "ubuntu-latest"
+    env:
+      # Tag from the manual input, or from the tag push that ran "Publish release"
+      TAG: "${{ inputs.tag || github.event.workflow_run.head_branch }}"
+    steps:
+      - uses: "actions/checkout@v7"
+        with:
+          ref: "main"
+
+      - name: "Insert version entry"
+        env:
+          REPOSITORY: "${{ github.repository }}"
+        run: |
+          python3 - <<'EOF'
+          import os, sys
+
+          tag = os.environ['TAG']
+          repository = os.environ['REPOSITORY']
+          path = 'feriae.xml'
+          xml = open(path).read()
+
+          if f'<num>{tag}</num>' in xml:
+              print(f'Version {tag} already present, nothing to do.')
+              sys.exit(0)
+
+          download = (
+              f'https://github.com/{repository}/releases/download/'
+              f'{tag}/glpi-feriae-{tag}.tar.bz2'
+          )
+          entry = (
+              '   <versions>\n'
+              '      <version>\n'
+              f'         <num>{tag}</num>\n'
+              '         <compatibility>~11.0.0</compatibility>\n'
+              f'         <download_url>{download}</download_url>\n'
+              '      </version>\n'
+          )
+
+          assert '   <versions>\n' in xml
+          xml = xml.replace('   <versions>\n', entry, 1)
+          open(path, 'w').write(xml)
+          print(f'Version {tag} added to the manifest.')
+          EOF
+
+      - name: "Commit and push"
+        run: |
+          if git diff --quiet; then
+            echo "Manifest already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feriae.xml
+          git commit -m "Add version ${TAG} to the plugin manifest [skip ci]"
+          git push

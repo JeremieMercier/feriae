@@ -1,0 +1,54 @@
+{#
+ # -------------------------------------------------------------------------
+ # Feriae plugin for GLPI
+ # -------------------------------------------------------------------------
+ #
+ # MIT License
+ #
+ # Permission is hereby granted, free of charge, to any person obtaining a copy
+ # of this software and associated documentation files (the "Software"), to deal
+ # in the Software without restriction, including without limitation the rights
+ # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ # copies of the Software, and to permit persons to whom the Software is
+ # furnished to do so, subject to the following conditions:
+ #
+ # The above copyright notice and this permission notice shall be included in all
+ # copies or substantial portions of the Software.
+ #
+ # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ # SOFTWARE.
+ # -------------------------------------------------------------------------
+ # @copyright Copyright (C) 2026 by the Feriae plugin team.
+ # @license   MIT https://opensource.org/licenses/mit-license.php
+ # @link      https://github.com/JeremieMercier/feriae
+ # -------------------------------------------------------------------------
+ #}
+
+
+{% if calendars is empty %}
+    <p class="text-muted mb-0">{{ __('The close times of this import are not attached to any calendar.', 'feriae') }}</p>
+{% else %}
+    <table class="table table-sm table-hover mb-0">
+        <thead>
+            <tr>
+                <th>{{ 'Calendar'|itemtype_name }}</th>
+                <th>{{ 'Entity'|itemtype_name }}</th>
+                <th>{{ __('Close times of this import', 'feriae') }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for calendar in calendars %}
+                <tr>
+                    <td>{{ get_item_link('Calendar', calendar.id) }}</td>
+                    <td>{{ get_item_name('Entity', calendar.entities_id) }}</td>
+                    <td>{{ calendar.holidays }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}

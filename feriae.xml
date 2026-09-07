@@ -1,0 +1,60 @@
+<root>
+   <name>Feriae</name>
+   <key>feriae</key>
+   <!-- stable, beta, development, alpha, ... -->
+   <state>beta</state>
+   <logo>https://raw.githubusercontent.com/JeremieMercier/feriae/main/docs/logo.png</logo>
+   <description>
+      <short>
+         <!-- Add as many lang tag you want -->
+         <en>Import the public holidays of 150+ countries and regions as closing periods, show them in the planning</en>
+         <fr>Importe les jours fériés de plus de 150 pays et régions comme périodes de fermeture et les affiche dans le planning</fr>
+      </short>
+      <long>
+         <!-- Add as many lang tag you want -->
+         <en>Feriae imports the public holidays of a country or a region (Alsace-Moselle, Scotland, Bavaria, Tasmania, the French overseas territories...) as GLPI closing periods, attached to the calendars you choose, so that SLA, OLA and working hours take them into account. Holidays are computed offline by the Yasumi library: no network access, no API key, no subscription. Imports are idempotent (re-running one refreshes what it created instead of duplicating it), every import batch can be removed from the plugin page, closing periods are shown in the planning with their own filter and colour, and a non-blocking warning appears when a task or an external event is planned on a closed day. Uninstalling the plugin removes the closing periods it imported, never the ones entered by hand. Free and open source (MIT).</en>
+         <fr>Feriae importe les jours fériés d'un pays ou d'une région (Alsace-Moselle, Écosse, Bavière, Tasmanie, outre-mer français...) comme périodes de fermeture GLPI, rattachées aux calendriers de votre choix, pour que les SLA, OLA et heures ouvrées en tiennent compte. Les fériés sont calculés hors ligne par la bibliothèque Yasumi : aucun accès réseau, aucune clé d'API, aucun abonnement. Les imports sont idempotents (relancer un import met à jour ce qu'il a créé au lieu de le dupliquer), chaque lot importé peut être retiré depuis la page du plugin, les périodes de fermeture s'affichent dans le planning avec leur propre filtre et couleur, et un avertissement non bloquant apparaît quand une tâche ou un événement externe est planifié un jour fermé. La désinstallation retire les périodes de fermeture importées par le plugin, jamais celles saisies à la main. Libre et gratuit (MIT).</fr>
+      </long>
+   </description>
+   <homepage>https://github.com/JeremieMercier/feriae</homepage>
+   <download>https://github.com/JeremieMercier/feriae/releases</download>
+   <issues>https://github.com/JeremieMercier/feriae/issues</issues>
+   <readme>https://github.com/JeremieMercier/feriae/blob/main/README.md</readme>
+   <authors>
+      <!-- Add as many author tag you want -->
+      <author>Jérémie Mercier</author>
+   </authors>
+   <versions>
+      <version>
+         <num>0.1.0</num>
+         <compatibility>~11.0.0</compatibility>
+         <download_url>https://github.com/JeremieMercier/feriae/releases/download/0.1.0/glpi-feriae-0.1.0.tar.bz2</download_url>
+      </version>
+   </versions>
+   <langs>
+      <!-- Add as many lang tag you want -->
+      <lang>en_GB</lang>
+      <lang>fr_FR</lang>
+   </langs>
+   <license>MIT</license>
+   <tags>
+      <en>
+         <tag>Holidays</tag>
+         <tag>Calendar</tag>
+         <tag>Planning</tag>
+         <tag>SLA</tag>
+      </en>
+      <fr>
+         <tag>Jours fériés</tag>
+         <tag>Calendrier</tag>
+         <tag>Planning</tag>
+         <tag>SLA</tag>
+      </fr>
+   </tags>
+   <screenshots>
+      <screenshot>https://raw.githubusercontent.com/JeremieMercier/feriae/main/docs/screenshots/new-import.png</screenshot>
+      <screenshot>https://raw.githubusercontent.com/JeremieMercier/feriae/main/docs/screenshots/imports.png</screenshot>
+      <screenshot>https://raw.githubusercontent.com/JeremieMercier/feriae/main/docs/screenshots/imported-days.png</screenshot>
+      <screenshot>https://raw.githubusercontent.com/JeremieMercier/feriae/main/docs/screenshots/planning.png</screenshot>
+   </screenshots>
+</root>

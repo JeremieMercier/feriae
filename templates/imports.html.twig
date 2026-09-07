@@ -1,0 +1,275 @@
+{#
+ # -------------------------------------------------------------------------
+ # Feriae plugin for GLPI
+ # -------------------------------------------------------------------------
+ #
+ # MIT License
+ #
+ # Permission is hereby granted, free of charge, to any person obtaining a copy
+ # of this software and associated documentation files (the "Software"), to deal
+ # in the Software without restriction, including without limitation the rights
+ # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ # copies of the Software, and to permit persons to whom the Software is
+ # furnished to do so, subject to the following conditions:
+ #
+ # The above copyright notice and this permission notice shall be included in all
+ # copies or substantial portions of the Software.
+ #
+ # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ # SOFTWARE.
+ # -------------------------------------------------------------------------
+ # @copyright Copyright (C) 2026 by the Feriae plugin team.
+ # @license   MIT https://opensource.org/licenses/mit-license.php
+ # @link      https://github.com/JeremieMercier/feriae
+ # -------------------------------------------------------------------------
+ #}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="ti ti-calendar-repeat me-2"></i>
+            {{ __('Automatic imports', 'feriae') }}
+        </h3>
+    </div>
+    {% if cron is not null %}
+        <div class="card-body pb-0">
+            {% if cron.system_cron_missing %}
+                <div class="alert alert-warning">
+                    <i class="ti ti-alert-triangle me-2"></i>
+                    <div>
+                        {{ __('The automatic action runs in CLI mode, but no automatic action in CLI mode has run during the last day. Make sure the system cron of GLPI is set up.', 'feriae') }}
+                    </div>
+                </div>
+            {% endif %}
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <p class="text-muted mb-0">
+                    {{ __('Automatic action', 'feriae') }} :
+                    <a href="{{ cron.url }}">importholidays</a>
+                    ({{ cron.mode_name }},
+                    {% if cron.lastrun is not empty %}
+                        {{ __('last run', 'feriae') }} {{ cron.lastrun|formatted_datetime }})
+                    {% else %}
+                        {{ __('never run', 'feriae') }})
+                    {% endif %}
+                </p>
+                {% if automatic_imports is not empty %}
+                    <form method="post" action="{{ automatic_run_action }}" class="ms-auto" data-submit-once>
+                        <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
+                        <button type="submit" class="btn btn-sm btn-outline-primary">
+                            <i class="ti ti-player-play me-1"></i>{{ __('Run all imports', 'feriae') }}
+                        </button>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+    {% if automatic_imports is empty %}
+        <div class="card-body text-muted">
+            {{ __('No automatic import. Enable "Renew every year" on an import to keep it up to date.', 'feriae') }}
+        </div>
+    {% else %}
+        <div class="table-responsive">
+            <table class="table table-hover card-table">
+                <thead>
+                    <tr>
+                        <th>{{ __('Data source', 'feriae') }}</th>
+                        <th>{{ __('Country or region', 'feriae') }}</th>
+                        <th>{{ 'Entity'|itemtype_name }}</th>
+                        <th>{{ __('Number of years', 'feriae') }}</th>
+                        <th>{{ 'Calendar'|itemtype_name(2) }}</th>
+                        <th>{{ __('Last run', 'feriae') }}</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for import in automatic_imports %}
+                        <tr>
+                            <td>{{ import.source_name }}</td>
+                            <td>{{ import.region_name }} <span class="text-muted">({{ import.region_code }})</span></td>
+                            <td>
+                                {{ get_item_name('Entity', import.entities_id) }}
+                                {% if import.is_recursive %}
+                                    <span class="text-muted">({{ __('Child entities') }})</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ import.years_count }}</td>
+                            <td>
+                                {% for calendars_id in import.calendars_id %}
+                                    {{ get_item_name('Calendar', calendars_id) }}{{ not loop.last ? ', ' : '' }}
+                                {% else %}
+                                    <span class="text-muted">-</span>
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% if import.last_run is not empty %}
+                                    {{ import.last_run|formatted_datetime }}
+                                    <div class="text-muted small">{{ import.last_summary }}</div>
+                                {% else %}
+                                    <span class="text-muted">{{ __('Never', 'feriae') }}</span>
+                                {% endif %}
+                            </td>
+                            <td class="text-end text-nowrap">
+                                <form method="post" action="{{ automatic_run_action }}" class="d-inline" data-submit-once>
+                                    <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
+                                    <input type="hidden" name="id" value="{{ import.id }}" />
+                                    <button type="submit" class="btn btn-sm btn-ghost-primary" title="{{ __('Import the coming years of this automatic import now', 'feriae') }}">
+                                        <i class="ti ti-player-play me-1"></i>{{ __('Run', 'feriae') }}
+                                    </button>
+                                </form>
+                                <form method="post" action="{{ automatic_delete_action }}" class="d-inline" data-submit-once>
+                                    <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
+                                    <input type="hidden" name="id" value="{{ import.id }}" />
+                                    <button type="submit" class="btn btn-sm btn-ghost-danger">
+                                        <i class="ti ti-trash me-1"></i>{{ __('Remove', 'feriae') }}
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+</div>
+
+<div class="card mt-3">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="ti ti-history me-2"></i>
+            {{ __('Previous imports', 'feriae') }}
+        </h3>
+        {% if groups is not empty %}
+            <form method="post" action="{{ automatic_register_all_action }}" class="ms-auto me-2" data-submit-once>
+                <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
+                <button type="submit" class="btn btn-sm btn-outline-primary"
+                        title="{{ __('Register an automatic import for every region and entity of the previous imports, without importing again', 'feriae') }}">
+                    <i class="ti ti-calendar-repeat me-1"></i>{{ __('Renew all imports', 'feriae') }}
+                </button>
+            </form>
+            <form method="post" action="{{ purge_all_action }}" data-submit-once>
+                <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
+                <button type="submit" class="btn btn-sm btn-outline-danger"
+                        onclick="return window.confirm('{{ __('Remove every close time created by the imports, with their calendar links? Close times entered by hand are kept.', 'feriae')|e('js') }}');">
+                    <i class="ti ti-trash me-1"></i>{{ __('Remove all imports', 'feriae') }}
+                </button>
+            </form>
+        {% endif %}
+    </div>
+    <div class="card-body pb-0">
+        <p class="text-muted">
+            <i class="ti ti-info-circle me-1"></i>
+            {{ __('Uninstalling the plugin removes every close time created by the imports, the same way as "Remove all imports". Close times entered by hand are never touched.', 'feriae') }}
+        </p>
+    </div>
+    {% if groups is empty %}
+        <div class="card-body text-muted">{{ __('No close times imported yet.', 'feriae') }}</div>
+    {% else %}
+        <div class="table-responsive">
+            <table class="table table-hover card-table">
+                <thead>
+                    <tr>
+                        <th>{{ __('Data source', 'feriae') }}</th>
+                        <th>{{ __('Country or region', 'feriae') }}</th>
+                        <th>{{ __('Year', 'feriae') }}</th>
+                        <th>{{ __('Close times', 'feriae') }}</th>
+                        <th>{{ 'Entity'|itemtype_name }}</th>
+                        <th>{{ __('Child entities') }}</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for group in groups %}
+                        <tr>
+                            <td>{{ group.source_name }}</td>
+                            <td>{{ group.region_name }} <span class="text-muted">({{ group.region_code }})</span></td>
+                            <td>{{ group.year }}</td>
+                            <td>
+                                {{ group.existing }}
+                                {% if group.existing < group.tracked %}
+                                    <span class="text-muted" title="{{ __('Some periods were deleted by hand since the import.', 'feriae') }}">
+                                        / {{ group.tracked }}
+                                    </span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {{ get_item_name('Entity', group.entities_id) }}
+                            </td>
+                            <td>
+                                <form method="post" action="{{ recursive_action }}" data-submit-once>
+                                    <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
+                                    <input type="hidden" name="source" value="{{ group.source }}" />
+                                    <input type="hidden" name="region_code" value="{{ group.region_code }}" />
+                                    <input type="hidden" name="entities_id" value="{{ group.entities_id }}" />
+                                    <label class="form-check form-switch mb-0" title="{{ __('For every year of this region and entity', 'feriae') }}">
+                                        <input type="hidden" name="is_recursive" value="0" />
+                                        <input type="checkbox" name="is_recursive" value="1" class="form-check-input"
+                                               {{ group.is_recursive ? 'checked' : '' }}
+                                               data-feriae-recursive
+                                               data-feriae-confirm-on="{{ __("Show the close times of %1$s in the child entities of %2$s?\n\n• Every year is concerned, including the coming ones.", 'feriae')|format(group.region_name, group.entity_name) }}"
+                                               data-feriae-confirm-off="{{ __("Hide the close times of %1$s from the child entities of %2$s?\n\n• Every year is concerned, including the coming ones.\n• A period a calendar of a child entity uses stays visible.", 'feriae')|format(group.region_name, group.entity_name) }}" />
+                                    </label>
+                                </form>
+                            </td>
+                            <td class="text-end text-nowrap">
+                                <button type="button" class="btn btn-sm btn-ghost-secondary"
+                                        data-feriae-modal-url="{{ days_action }}?source={{ group.source|url_encode }}&region_code={{ group.region_code|url_encode }}&entities_id={{ group.entities_id }}&year={{ group.year }}"
+                                        data-feriae-modal-title="{{ group.region_name }} {{ group.year }} : {{ __('Days', 'feriae')|lower }}">
+                                    <i class="ti ti-list me-1"></i>{{ __('Days', 'feriae') }}
+                                </button>
+                                <button type="button" class="btn btn-sm btn-ghost-secondary"
+                                        data-feriae-modal-url="{{ calendars_action }}?source={{ group.source|url_encode }}&region_code={{ group.region_code|url_encode }}&entities_id={{ group.entities_id }}&year={{ group.year }}"
+                                        data-feriae-modal-title="{{ group.region_name }} {{ group.year }} : {{ 'Calendar'|itemtype_name(2)|lower }}">
+                                    <i class="ti ti-calendar me-1"></i>{{ 'Calendar'|itemtype_name(2) }}
+                                </button>
+                                <form method="post" action="{{ automatic_register_action }}" class="d-inline" data-submit-once>
+                                    <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
+                                    <input type="hidden" name="source" value="{{ group.source }}" />
+                                    <input type="hidden" name="region_code" value="{{ group.region_code }}" />
+                                    <input type="hidden" name="entities_id" value="{{ group.entities_id }}" />
+                                    <input type="hidden" name="year" value="{{ group.year }}" />
+                                    <button type="submit" class="btn btn-sm btn-ghost-secondary" title="{{ __('Register an automatic import with the settings of this one, without importing again', 'feriae') }}">
+                                        <i class="ti ti-calendar-repeat me-1"></i>{{ __('Renew', 'feriae') }}
+                                    </button>
+                                </form>
+                                <form method="post" action="{{ purge_action }}" class="d-inline" data-submit-once>
+                                    <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
+                                    <input type="hidden" name="source" value="{{ group.source }}" />
+                                    <input type="hidden" name="region_code" value="{{ group.region_code }}" />
+                                    <input type="hidden" name="entities_id" value="{{ group.entities_id }}" />
+                                    <input type="hidden" name="year" value="{{ group.year }}" />
+                                    <button type="submit" class="btn btn-sm btn-ghost-danger"
+                                            onclick="return window.confirm('{{ __('Remove these close times and their calendar links?', 'feriae')|e('js') }}');">
+                                        <i class="ti ti-trash me-1"></i>{{ __('Remove', 'feriae') }}
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+</div>
+
+<div class="modal fade" id="feriae-modal" tabindex="-1" aria-hidden="true"
+     data-feriae-modal-failure="{{ __('The list could not be loaded.', 'feriae') }}">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="ti ti-calendar-down me-2"></i>
+                    <span data-feriae-modal-body-title></span>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('Close') }}"></button>
+            </div>
+            <div class="modal-body" data-feriae-modal-body></div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ js_path('/plugins/feriae/js/config.js') }}"></script>
