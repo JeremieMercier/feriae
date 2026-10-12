@@ -99,12 +99,12 @@ embarque déjà Yasumi. Elle s'installe dans le dossier `marketplace/` de
 GLPI (le dossier `plugins/` reste réservé au développement).
 
 ```bash
-# Depuis le dossier marketplace de GLPI, en remplaçant 1.0.0 par la version voulue
+# Depuis le dossier marketplace de GLPI, en remplaçant 1.0.1 par la version voulue
 cd /chemin/vers/glpi/marketplace
 
 # 1. Télécharger et extraire l'archive (elle contient le dossier feriae/)
-curl -LO https://github.com/JeremieMercier/feriae/releases/download/1.0.0/glpi-feriae-1.0.0.tar.bz2
-tar -xjf glpi-feriae-1.0.0.tar.bz2 && rm glpi-feriae-1.0.0.tar.bz2
+curl -LO https://github.com/JeremieMercier/feriae/releases/download/1.0.1/glpi-feriae-1.0.1.tar.bz2
+tar -xjf glpi-feriae-1.0.1.tar.bz2 && rm glpi-feriae-1.0.1.tar.bz2
 
 # 2. Donner les fichiers à l'utilisateur du serveur web (www-data, apache, nginx…)
 chown -R www-data:www-data feriae

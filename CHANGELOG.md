@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2026-10-12
+
+### Changed
+
+- Archive built with a plugin specific Composer autoloader suffix, so that
+  the plugin autoloader cannot clash with another plugin's.
+- Typed class constants (PHP 8.3).
+
 ## [1.0.0] - 2026-10-12
 
 First release for GLPI 12. GLPI 11 keeps the 0.x line (branch
@@ -53,5 +61,6 @@ First release.
   entered by hand.
 - French translation.
 
+[1.0.1]: https://github.com/JeremieMercier/feriae/releases/tag/1.0.1
 [1.0.0]: https://github.com/JeremieMercier/feriae/releases/tag/1.0.0
 [0.1.0]: https://github.com/JeremieMercier/feriae/releases/tag/0.1.0

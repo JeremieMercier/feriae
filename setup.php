@@ -44,7 +44,7 @@ if (file_exists(__DIR__ . '/vendor/autoload.php')) {
 }
 
 /** @phpstan-ignore theCodingMachineSafe.function (safe to assume this isn't already defined) */
-define('PLUGIN_FERIAE_VERSION', '1.0.0');
+define('PLUGIN_FERIAE_VERSION', '1.0.1');
 
 // Minimal GLPI version, inclusive
 /** @phpstan-ignore theCodingMachineSafe.function (safe to assume this isn't already defined) */
