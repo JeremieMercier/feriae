@@ -59,7 +59,6 @@
                 </p>
                 {% if automatic_imports is not empty %}
                     <form method="post" action="{{ automatic_run_action }}" class="ms-auto" data-submit-once>
-                        <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
                         <button type="submit" class="btn btn-sm btn-outline-primary">
                             <i class="ti ti-player-play me-1"></i>{{ __('Run all imports', 'feriae') }}
                         </button>
@@ -115,14 +114,12 @@
                             </td>
                             <td class="text-end text-nowrap">
                                 <form method="post" action="{{ automatic_run_action }}" class="d-inline" data-submit-once>
-                                    <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
                                     <input type="hidden" name="id" value="{{ import.id }}" />
                                     <button type="submit" class="btn btn-sm btn-ghost-primary" title="{{ __('Import the coming years of this automatic import now', 'feriae') }}">
                                         <i class="ti ti-player-play me-1"></i>{{ __('Run', 'feriae') }}
                                     </button>
                                 </form>
                                 <form method="post" action="{{ automatic_delete_action }}" class="d-inline" data-submit-once>
-                                    <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
                                     <input type="hidden" name="id" value="{{ import.id }}" />
                                     <button type="submit" class="btn btn-sm btn-ghost-danger">
                                         <i class="ti ti-trash me-1"></i>{{ __('Remove', 'feriae') }}
@@ -145,14 +142,12 @@
         </h3>
         {% if groups is not empty %}
             <form method="post" action="{{ automatic_register_all_action }}" class="ms-auto me-2" data-submit-once>
-                <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
                 <button type="submit" class="btn btn-sm btn-outline-primary"
                         title="{{ __('Register an automatic import for every region and entity of the previous imports, without importing again', 'feriae') }}">
                     <i class="ti ti-calendar-repeat me-1"></i>{{ __('Renew all imports', 'feriae') }}
                 </button>
             </form>
             <form method="post" action="{{ purge_all_action }}" data-submit-once>
-                <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
                 <button type="submit" class="btn btn-sm btn-outline-danger"
                         onclick="return window.confirm('{{ __('Remove every close time created by the imports, with their calendar links? Close times entered by hand are kept.', 'feriae')|e('js') }}');">
                     <i class="ti ti-trash me-1"></i>{{ __('Remove all imports', 'feriae') }}
@@ -201,7 +196,6 @@
                             </td>
                             <td>
                                 <form method="post" action="{{ recursive_action }}" data-submit-once>
-                                    <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
                                     <input type="hidden" name="source" value="{{ group.source }}" />
                                     <input type="hidden" name="region_code" value="{{ group.region_code }}" />
                                     <input type="hidden" name="entities_id" value="{{ group.entities_id }}" />
@@ -227,7 +221,6 @@
                                     <i class="ti ti-calendar me-1"></i>{{ 'Calendar'|itemtype_name(2) }}
                                 </button>
                                 <form method="post" action="{{ automatic_register_action }}" class="d-inline" data-submit-once>
-                                    <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
                                     <input type="hidden" name="source" value="{{ group.source }}" />
                                     <input type="hidden" name="region_code" value="{{ group.region_code }}" />
                                     <input type="hidden" name="entities_id" value="{{ group.entities_id }}" />
@@ -237,7 +230,6 @@
                                     </button>
                                 </form>
                                 <form method="post" action="{{ purge_action }}" class="d-inline" data-submit-once>
-                                    <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
                                     <input type="hidden" name="source" value="{{ group.source }}" />
                                     <input type="hidden" name="region_code" value="{{ group.region_code }}" />
                                     <input type="hidden" name="entities_id" value="{{ group.entities_id }}" />

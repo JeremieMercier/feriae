@@ -4,7 +4,7 @@
 
 # Feriae — plugin GLPI
 
-Plugin GLPI 11 **libre et gratuit** qui importe les jours fériés de plus de
+Plugin GLPI 12 **libre et gratuit** qui importe les jours fériés de plus de
 150 pays et régions comme **périodes de fermeture** GLPI, les rattache aux
 calendriers, les affiche dans le planning et prévient quand une tâche est
 planifiée un jour fermé.
@@ -83,8 +83,13 @@ Les périodes de fermeture dans le planning :
 
 ## Prérequis
 
-- GLPI >= 11.0
-- PHP >= 8.2 avec l'extension `intl`
+- GLPI >= 12.0
+- PHP >= 8.3 avec l'extension `intl`
+
+> **GLPI 11** : utiliser une version 0.x du plugin (branche `0.x/bugfixes`).
+> GLPI 12 type les propriétés de ses classes de base, ce qu'un même code
+> ne peut pas satisfaire pour les deux versions : la 1.x est réservée à
+> GLPI 12, la 0.x reste maintenue pour GLPI 11.
 
 ## Installation
 
@@ -94,12 +99,12 @@ embarque déjà Yasumi. Elle s'installe dans le dossier `marketplace/` de
 GLPI (le dossier `plugins/` reste réservé au développement).
 
 ```bash
-# Depuis le dossier marketplace de GLPI, en remplaçant 0.1.0 par la version voulue
+# Depuis le dossier marketplace de GLPI, en remplaçant 1.0.0 par la version voulue
 cd /chemin/vers/glpi/marketplace
 
 # 1. Télécharger et extraire l'archive (elle contient le dossier feriae/)
-curl -LO https://github.com/JeremieMercier/feriae/releases/download/0.1.0/glpi-feriae-0.1.0.tar.bz2
-tar -xjf glpi-feriae-0.1.0.tar.bz2 && rm glpi-feriae-0.1.0.tar.bz2
+curl -LO https://github.com/JeremieMercier/feriae/releases/download/1.0.0/glpi-feriae-1.0.0.tar.bz2
+tar -xjf glpi-feriae-1.0.0.tar.bz2 && rm glpi-feriae-1.0.0.tar.bz2
 
 # 2. Donner les fichiers à l'utilisateur du serveur web (www-data, apache, nginx…)
 chown -R www-data:www-data feriae

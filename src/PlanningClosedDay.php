@@ -50,7 +50,7 @@ use Session;
  */
 final class PlanningClosedDay extends CommonGLPI
 {
-    public static $rightname = 'planning';
+    public static string $rightname = 'planning';
 
     /**
      * Colour given to the planning filter the first time it shows up for a

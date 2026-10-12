@@ -51,6 +51,8 @@ jobs:
               print(f'Version {tag} already present, nothing to do.')
               sys.exit(0)
 
+          # One plugin major per GLPI major: 0.x targets GLPI 11, 1.x GLPI 12
+          compatibility = '~11.0.0' if tag.startswith('0.') else '~12.0.0'
           download = (
               f'https://github.com/{repository}/releases/download/'
               f'{tag}/glpi-feriae-{tag}.tar.bz2'
@@ -59,7 +61,7 @@ jobs:
               '   <versions>\n'
               '      <version>\n'
               f'         <num>{tag}</num>\n'
-              '         <compatibility>~11.0.0</compatibility>\n'
+              f'         <compatibility>{compatibility}</compatibility>\n'
               f'         <download_url>{download}</download_url>\n'
               '      </version>\n'
           )

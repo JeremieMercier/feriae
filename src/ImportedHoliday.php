@@ -46,9 +46,9 @@ use Migration;
  */
 final class ImportedHoliday extends CommonDBTM
 {
-    public static $rightname = 'config';
+    public static string $rightname = 'config';
 
-    public $dohistory = false;
+    public bool $dohistory = false;
 
     public static function getTypeName($nb = 0)
     {

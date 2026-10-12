@@ -60,7 +60,7 @@ final class PluginConfig extends CommonGLPI
 {
     public const CONTEXT = 'plugin:feriae';
 
-    public static $rightname = 'config';
+    public static string $rightname = 'config';
 
     public static function getTypeName($nb = 0)
     {

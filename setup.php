@@ -44,15 +44,15 @@ if (file_exists(__DIR__ . '/vendor/autoload.php')) {
 }
 
 /** @phpstan-ignore theCodingMachineSafe.function (safe to assume this isn't already defined) */
-define('PLUGIN_FERIAE_VERSION', '0.1.0');
+define('PLUGIN_FERIAE_VERSION', '1.0.0');
 
 // Minimal GLPI version, inclusive
 /** @phpstan-ignore theCodingMachineSafe.function (safe to assume this isn't already defined) */
-define("PLUGIN_FERIAE_MIN_GLPI_VERSION", "11.0.0");
+define("PLUGIN_FERIAE_MIN_GLPI_VERSION", "12.0.0");
 
 // Maximum GLPI version, exclusive
 /** @phpstan-ignore theCodingMachineSafe.function (safe to assume this isn't already defined) */
-define("PLUGIN_FERIAE_MAX_GLPI_VERSION", "11.0.99");
+define("PLUGIN_FERIAE_MAX_GLPI_VERSION", "12.0.99");
 
 /**
  * Init hooks of the plugin.

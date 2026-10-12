@@ -65,9 +65,9 @@ final class AutomaticImport extends CommonDBTM
 {
     public const CRON_NAME = 'importholidays';
 
-    public static $rightname = 'config';
+    public static string $rightname = 'config';
 
-    public $dohistory = false;
+    public bool $dohistory = false;
 
     public static function getTypeName($nb = 0)
     {

@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0] - 2026-10-12
+
+First release for GLPI 12. GLPI 11 keeps the 0.x line (branch
+`0.x/bugfixes`): GLPI 12 types the properties of its base classes, which a
+single code base cannot satisfy for both versions.
+
+### Changed
+
+- Requires GLPI 12.0 and PHP 8.3.
+- `$rightname` and `$dohistory` typed as GLPI 12 declares them.
+
+### Removed
+
+- CSRF token fields of the forms: GLPI 12 validates the request headers
+  instead.
+
 ## [0.1.0] - 2026-09-07
 
 First release.
@@ -37,4 +53,5 @@ First release.
   entered by hand.
 - French translation.
 
+[1.0.0]: https://github.com/JeremieMercier/feriae/releases/tag/1.0.0
 [0.1.0]: https://github.com/JeremieMercier/feriae/releases/tag/0.1.0
