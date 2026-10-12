@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - "main"
+      - "**/bugfixes"
     tags:
        - "*"
   pull_request:
