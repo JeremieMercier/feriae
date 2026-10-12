@@ -41,7 +41,7 @@ $current_plugin_folder = 'feriae';
 $glpi_root = getenv('GLPI_ROOT') ?: dirname(__DIR__, 3);
 
 require $glpi_root . '/tests/bootstrap.php';
-require dirname(__DIR__) . '/vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 if (!Plugin::isPluginActive($current_plugin_folder)) {
     throw new RuntimeException(sprintf('Plugin %s is not active in the test database', $current_plugin_folder));

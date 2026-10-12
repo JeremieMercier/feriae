@@ -66,7 +66,7 @@ use function Safe\preg_replace;
  */
 final class YasumiSource implements HolidaySource
 {
-    public const KEY = 'yasumi';
+    public const string KEY = 'yasumi';
 
     /**
      * Plugin providers, indexed by region code. Yasumi only scans its own
@@ -74,7 +74,7 @@ final class YasumiSource implements HolidaySource
      *
      * @var array<string, class-string<ProviderInterface>>
      */
-    private const EXTRA_PROVIDERS = [
+    private const array EXTRA_PROVIDERS = [
         Guadeloupe::ID             => Guadeloupe::class,
         Martinique::ID             => Martinique::class,
         FrenchGuiana::ID           => FrenchGuiana::class,
@@ -89,14 +89,14 @@ final class YasumiSource implements HolidaySource
     ];
 
     /** Yasumi entries that are not geographic regions. */
-    private const IGNORED_PROVIDERS = ['US-NYSE'];
+    private const array IGNORED_PROVIDERS = ['US-NYSE'];
 
     /**
      * Subdivision labels that the humanized class name does not render
      * properly (English, translated through the plugin locales). Everything
      * else is derived from the provider class name.
      */
-    private const SUBDIVISION_LABELS = [
+    private const array SUBDIVISION_LABELS = [
         'CA-NL'  => 'Newfoundland and Labrador',
         'CH-BL'  => 'Basel-Landschaft',
         'CH-BS'  => 'Basel-Stadt',

@@ -57,7 +57,7 @@ final class PlanningClosedDay extends CommonGLPI
      * user. GLPI would otherwise pick one from its palette by order of
      * appearance. Users remain free to change it afterwards.
      */
-    public const DEFAULT_FILTER_COLOR = '#ffd2d4';
+    public const string DEFAULT_FILTER_COLOR = '#ffd2d4';
 
     public static function getTypeName($nb = 0)
     {
@@ -159,9 +159,7 @@ final class PlanningClosedDay extends CommonGLPI
             $labels = [];
             foreach ($origins as $origin) {
                 $key = $origin['source'];
-                if (!isset($regions_by_source[$key])) {
-                    $regions_by_source[$key] = SourceRegistry::has($key) ? SourceRegistry::get($key)->getRegions($locale) : [];
-                }
+                $regions_by_source[$key] ??= SourceRegistry::has($key) ? SourceRegistry::get($key)->getRegions($locale) : [];
 
                 $regions  = $regions_by_source[$key];
                 $code     = $origin['region_code'];
@@ -223,6 +221,6 @@ final class PlanningClosedDay extends CommonGLPI
 
     public static function canView(): bool
     {
-        return (bool) Session::haveRight(self::$rightname, READ);
+        return Session::haveRight(self::$rightname, READ);
     }
 }

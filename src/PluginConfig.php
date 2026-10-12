@@ -58,7 +58,7 @@ use function Safe\json_encode;
  */
 final class PluginConfig extends CommonGLPI
 {
-    public const CONTEXT = 'plugin:feriae';
+    public const string CONTEXT = 'plugin:feriae';
 
     public static string $rightname = 'config';
 

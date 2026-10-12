@@ -73,9 +73,9 @@ final readonly class ImportRequest
      * 9999; the bounds keep the form and the requests within the years a
      * GLPI calendar may care about.
      */
-    public const MIN_YEAR = 1970;
+    public const int MIN_YEAR = 1970;
 
-    public const MAX_YEAR = 2100;
+    public const int MAX_YEAR = 2100;
 
     public static function isValidYear(int $year): bool
     {

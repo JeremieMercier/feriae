@@ -57,7 +57,7 @@ use function Safe\json_encode;
 
 final class ImportController extends AbstractController
 {
-    private const MAX_YEARS = 10;
+    private const int MAX_YEARS = 10;
 
     #[Route(path: 'import', name: 'import', methods: ['POST'])]
     public function import(Request $request): RedirectResponse

@@ -63,7 +63,7 @@ use function Safe\strtotime;
  */
 final class AutomaticImport extends CommonDBTM
 {
-    public const CRON_NAME = 'importholidays';
+    public const string CRON_NAME = 'importholidays';
 
     public static string $rightname = 'config';
 
