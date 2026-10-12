@@ -1,9 +1,14 @@
 {
+    "name": "jeremiemercier/feriae",
+    "description": "GLPI plugin importing the public holidays of 150+ countries and regions as close times",
+    "license": "MIT",
+    "type": "glpi-plugin",
     "require": {
         "php": ">=8.2",
         "azuyalabs/yasumi": "^2.11"
     },
     "config": {
+        "autoloader-suffix": "PluginFeriae",
         "optimize-autoloader": true,
         "platform": {
             "php": "8.2.99"
