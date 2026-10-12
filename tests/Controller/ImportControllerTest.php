@@ -33,6 +33,7 @@
 
 namespace GlpiPlugin\Feriae\Tests\Controller;
 
+use Config;
 use DBmysql;
 use Calendar;
 use Calendar_Holiday;
@@ -69,7 +70,7 @@ final class ImportControllerTest extends DbTestCase
         $automatic = AutomaticImport::getAll()[0];
 
         $this->login('normal');
-        $this->assertSame(0, (int) Session::haveRight(\Config::$rightname, UPDATE));
+        $this->assertSame(0, (int) Session::haveRight(Config::$rightname, UPDATE));
         $group = ['source' => 'yasumi', 'region_code' => 'FR', 'entities_id' => '0', 'year' => '2020'];
         $calls = [
             'import'                      => static fn() => $controller->import(Request::create('', 'POST', ['region_code' => 'BE', 'year_from' => '2020'])),
