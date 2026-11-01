@@ -5,7 +5,7 @@
     "type": "glpi-plugin",
     "require": {
         "php": ">=8.3",
-        "azuyalabs/yasumi": "^2.11"
+        "azuyalabs/yasumi": "^2.12"
     },
     "config": {
         "autoloader-suffix": "PluginFeriae",
